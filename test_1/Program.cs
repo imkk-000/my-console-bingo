@@ -6,7 +6,7 @@ namespace test_1
     {
         static int BingoRow = 5, BingoColumn = 5;
         static int[,] BingoBoard = null;
-        static void generateBingoBoard()
+        static void GenerateNewBingoBoard()
         {
             BingoBoard = new int[,] {
                 {7, 18, 8, 19, 2},
@@ -17,7 +17,7 @@ namespace test_1
             };
         }
 
-        static void findAndMarkNumber(int selectNumber)
+        static void BingoMarkNumber(int selectNumber)
         {
             for (int col = 0; col < BingoColumn; col++)
             {
@@ -31,9 +31,13 @@ namespace test_1
             }
         }
 
-        static bool findBingo()
+        static bool IsBingo()
         {
-            int bingoHorizontalCounter = 0, bingoVerticalCounter = 0;
+            int bingoHorizontalCounter = 0;
+            int bingoVerticalCounter = 0;
+            int bingoDiagonalDownCounter = 0;
+            int bingoDiagonalUpCounter = 0;
+            int diffBingoRow = 0;
             for (int col = 0; col < BingoColumn; col++)
             {
                 bingoHorizontalCounter = 0;
@@ -49,6 +53,15 @@ namespace test_1
                         bingoVerticalCounter++;
                     }
                 }
+                if (BingoBoard[col, col] == 0)
+                {
+                    bingoDiagonalDownCounter++;
+                }
+                diffBingoRow = BingoRow - 1 - col;
+                if (BingoBoard[col, diffBingoRow] == 0)
+                {
+                    bingoDiagonalUpCounter++;
+                }
                 if (bingoHorizontalCounter == BingoRow)
                 {
                     return true;
@@ -57,26 +70,26 @@ namespace test_1
                 {
                     return true;
                 }
+                if (bingoDiagonalDownCounter == BingoColumn)
+                {
+                    return true;
+                }
+                if (bingoDiagonalUpCounter == BingoColumn)
+                {
+                    return true;
+                }
             }
-
             return false;
         }
 
-        static bool isBingo()
+        static string BingoGame(int[] selectNumbers)
         {
-            return findBingo();
-        }
-
-        static bool BingoGame(int[] selectNumbers)
-        {
-            generateBingoBoard();
-
+            GenerateNewBingoBoard();
             for (int i = 0; i < selectNumbers.Length; i++)
             {
-                findAndMarkNumber(selectNumbers[i]);
+                BingoMarkNumber(selectNumbers[i]);
             }
-
-            return isBingo();
+            return IsBingo() ? "Bingo" : "Not Bingo";
         }
 
         static void Main(string[] args)
@@ -87,6 +100,8 @@ namespace test_1
             Console.WriteLine(BingoGame(new int[] { 7, 18, 8, 19, 2 }));
             // \
             Console.WriteLine(BingoGame(new int[] { 7, 17, 1, 16, 5 }));
+            // /
+            Console.WriteLine(BingoGame(new int[] { 2, 14, 1, 4, 12 }));
         }
     }
 }
