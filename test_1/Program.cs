@@ -6,6 +6,7 @@ namespace test_1
     {
         static int BingoRow = 5, BingoColumn = 5;
         static int[,] BingoBoard = null;
+
         static void GenerateNewBingoBoard()
         {
             BingoBoard = new int[,] {
@@ -37,11 +38,11 @@ namespace test_1
             int bingoVerticalCounter = 0;
             int bingoDiagonalDownCounter = 0;
             int bingoDiagonalUpCounter = 0;
-            int diffBingoRow = 0;
+            int diffBingoRowForUpDiagonal = 0;
+
             for (int col = 0; col < BingoColumn; col++)
             {
-                bingoHorizontalCounter = 0;
-                bingoVerticalCounter = 0;
+                // count bingo table
                 for (int row = 0; row < BingoRow; row++)
                 {
                     if (BingoBoard[col, row] == 0)
@@ -57,11 +58,13 @@ namespace test_1
                 {
                     bingoDiagonalDownCounter++;
                 }
-                diffBingoRow = BingoRow - 1 - col;
-                if (BingoBoard[col, diffBingoRow] == 0)
+                diffBingoRowForUpDiagonal = BingoRow - 1 - col;
+                if (BingoBoard[col, diffBingoRowForUpDiagonal] == 0)
                 {
                     bingoDiagonalUpCounter++;
                 }
+
+                // bingo?
                 if (bingoHorizontalCounter == BingoRow)
                 {
                     return true;
@@ -78,6 +81,9 @@ namespace test_1
                 {
                     return true;
                 }
+
+                bingoHorizontalCounter = 0;
+                bingoVerticalCounter = 0;
             }
             return false;
         }
