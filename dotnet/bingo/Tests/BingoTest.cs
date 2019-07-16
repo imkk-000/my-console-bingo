@@ -69,5 +69,71 @@ namespace test
 
             Assert.Equal(expectedBoardGame, actualBoardGame);
         }
+
+        [Fact]
+        private void TestCheckBingoWithIndexDistanceInputStartIndex0IndexDistance1ShouldBeTrue()
+        {
+            bool expectedCheckBingo = true;
+            Bingo bingo = new Bingo(5);
+            bingo.NewBoardGame();
+            bingo.MarkNumber(7);
+            bingo.MarkNumber(18);
+            bingo.MarkNumber(8);
+            bingo.MarkNumber(19);
+            bingo.MarkNumber(2);
+
+            bool actualCheckBingo = bingo.CheckBingoWithIndexDistance(0, 1);
+
+            Assert.Equal(expectedCheckBingo, actualCheckBingo);
+        }
+
+        [Fact]
+        private void TestCheckBingoWithIndexDistanceInputStartIndex4IndexDistance4ShouldBeTrue()
+        {
+            bool expectedCheckBingo = true;
+            Bingo bingo = new Bingo(5);
+            bingo.NewBoardGame();
+            bingo.MarkNumber(2);
+            bingo.MarkNumber(14);
+            bingo.MarkNumber(1);
+            bingo.MarkNumber(4);
+            bingo.MarkNumber(12);
+
+            bool actualCheckBingo = bingo.CheckBingoWithIndexDistance(4, 4);
+
+            Assert.Equal(expectedCheckBingo, actualCheckBingo);
+        }
+
+        [Fact]
+        private void TestCheckBingoWithIndexDistanceInputStartIndex0IndexDistance6ShouldBeTrue()
+        {
+            bool expectedCheckBingo = true;
+            Bingo bingo = new Bingo(5);
+            bingo.NewBoardGame();
+            bingo.MarkNumber(7);
+            bingo.MarkNumber(17);
+            bingo.MarkNumber(1);
+            bingo.MarkNumber(16);
+            bingo.MarkNumber(5);
+
+            bool actualCheckBingo = bingo.CheckBingoWithIndexDistance(0, 6);
+
+            Assert.Equal(expectedCheckBingo, actualCheckBingo);
+        }
+
+        [Fact]
+        private void TestCheckBingoWithIndexDistanceInputStartIndex0IndexDistance1ShouldBeFalse()
+        {
+            bool expectedCheckBingo = false;
+            Bingo bingo = new Bingo(5);
+            bingo.NewBoardGame();
+            bingo.MarkNumber(7);
+            bingo.MarkNumber(18);
+            bingo.MarkNumber(2);
+
+            bool actualCheckBingo = bingo.CheckBingoWithIndexDistance(0, 1);
+
+            Assert.Equal(expectedCheckBingo, actualCheckBingo);
+        }
     }
 }

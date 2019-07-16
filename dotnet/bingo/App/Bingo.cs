@@ -14,7 +14,7 @@ namespace App
 
         public void NewBoardGame()
         {
-            BoardGame = new int[,] {
+            this.BoardGame = new int[,] {
                 {7, 18, 8, 19, 2},
                 {9, 17, 6, 14, 15},
                 {20, 13, 1, 21, 10},
@@ -45,6 +45,21 @@ namespace App
                     }
                 }
             }
+        }
+
+        public bool CheckBingoWithIndexDistance(int startIndex, int indexDistanceNumber)
+        {
+            int[] arrayIndex;
+            int counter = 0;
+            for (int i = 0, id = startIndex; i < BoardSize; i++, id += indexDistanceNumber)
+            {
+                arrayIndex = ConvertNumberToIndex(id);
+                if (this.BoardGame[arrayIndex[0], arrayIndex[1]] == 0)
+                {
+                    counter++;
+                }
+            }
+            return (this.BoardSize == counter);
         }
     }
 }
