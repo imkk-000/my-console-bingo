@@ -24,7 +24,7 @@ namespace App
 
         public int[] ConvertNumberToIndex(int number)
         {
-            return new int[] { 0, 0 };
+            return new int[] { number / BoardSize, number % BoardSize };
         }
     }
 }
