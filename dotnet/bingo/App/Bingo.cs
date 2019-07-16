@@ -1,6 +1,6 @@
 using System;
 
-namespace app {
+namespace App {
     public class Bingo {
         private int Rows, Columns;
 

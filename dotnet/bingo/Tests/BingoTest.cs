@@ -1,6 +1,6 @@
 using System;
 using Xunit;
-using app;
+using App;
 
 namespace test
 {
