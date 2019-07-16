@@ -12,8 +12,8 @@ namespace test
             int expectedBingoBoardSize = 5 * 5;
             Bingo bingo = new Bingo(5);
 
-            int[,] bingoBoard = bingo.NewBoard();
-            int actualBingoBoardSize = bingoBoard.Length;
+            bingo.NewBoardGame();
+            int actualBingoBoardSize = bingo.GetBoardGame().Length;
 
             Assert.Equal(expectedBingoBoardSize, actualBingoBoardSize);
         }
