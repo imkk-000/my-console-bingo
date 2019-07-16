@@ -7,20 +7,15 @@ namespace test
     public class BingoTest
     {
         [Fact]
-        public void TestNewBoardNoInputShouldBe2DimensionalArrays()
+        public void TestNewBoardNoInputShouldBeBingoBoardSize5x5()
         {
-            // Arrange
-            int[,] expectedBoard = new int[,] {
-                {1, 2},
-                {3, 4},
-            };
-            Bingo bingo = new Bingo(0, 0);
+            int expectedBingoBoardSize = 5 * 5;
+            Bingo bingo = new Bingo();
 
-            // Act
-            int[,] actualBoard = bingo.NewBoard();
+            int[,] bingoBoard = bingo.NewBoard();
+            int actualBingoBoardSize = bingoBoard.Length;
 
-            // Assert
-            Assert.Equal(expectedBoard, actualBoard);
+            Assert.Equal(expectedBingoBoardSize, actualBingoBoardSize);
         }
     }
 }
