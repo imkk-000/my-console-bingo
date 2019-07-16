@@ -50,5 +50,24 @@ namespace test
 
             Assert.Equal(expectedArray, actualArray);
         }
+
+        [Fact]
+        private void TestMarkNumberInput7ShouldBeBoardGameIndex0and0IsZero()
+        {
+            int[,] expectedBoardGame = new int[,] {
+                {0, 18, 8, 19, 2},
+                {9, 17, 6, 14, 15},
+                {20, 13, 1, 21, 10},
+                {3, 4, 22, 16, 24},
+                {12, 23, 11, 25, 5},
+            };
+            Bingo bingo = new Bingo(5);
+            bingo.NewBoardGame();
+
+            bingo.MarkNumber(7);
+            int[,] actualBoardGame = bingo.GetBoardGame();
+
+            Assert.Equal(expectedBoardGame, actualBoardGame);
+        }
     }
 }

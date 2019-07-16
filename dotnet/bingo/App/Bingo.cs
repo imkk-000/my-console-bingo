@@ -23,13 +23,28 @@ namespace App
             };
         }
 
-        public int[,] GetBoardGame() {
+        public int[,] GetBoardGame()
+        {
             return this.BoardGame;
         }
 
         public int[] ConvertNumberToIndex(int number)
         {
             return new int[] { number / BoardSize, number % BoardSize };
+        }
+
+        public void MarkNumber(int number)
+        {
+            for (int col = 0; col < BoardSize; col++)
+            {
+                for (int row = 0; row < BoardSize; row++)
+                {
+                    if (this.BoardGame[col, row] == number)
+                    {
+                        this.BoardGame[col, row] = 0;
+                    }
+                }
+            }
         }
     }
 }
