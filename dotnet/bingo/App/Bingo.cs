@@ -4,12 +4,11 @@ namespace App
 {
     public class Bingo
     {
-        private int Rows, Columns;
+        private int BoardSize;
 
-        public Bingo()
+        public Bingo(int boardSize)
         {
-            this.Rows = 5;
-            this.Columns = 5;
+            this.BoardSize = boardSize;
         }
 
         public int[,] NewBoard()
@@ -21,6 +20,11 @@ namespace App
                 {3, 4, 22, 16, 24},
                 {12, 23, 11, 25, 5},
             };
+        }
+
+        public int[] ConvertNumberToIndex(int number)
+        {
+            return new int[] { 0, 0 };
         }
     }
 }
