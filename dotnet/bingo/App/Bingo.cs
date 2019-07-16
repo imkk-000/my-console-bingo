@@ -61,5 +61,40 @@ namespace App
             }
             return (this.BoardSize == counter);
         }
+
+        public bool CheckBingo()
+        {
+            if (CheckBingoDiagonalDirection())
+            {
+                return true;
+            }
+            for (int i = 0; i < BoardSize; i++)
+            {
+                if (CheckBingoHorizontalDirection(i * this.BoardSize))
+                {
+                    return true;
+                }
+                if (CheckBingoVerticalDirection(i))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool CheckBingoHorizontalDirection(int startIndex)
+        {
+            return CheckBingoWithIndexDistance(startIndex, 1);
+        }
+
+        public bool CheckBingoVerticalDirection(int startIndex)
+        {
+            return CheckBingoWithIndexDistance(startIndex, this.BoardSize);
+        }
+
+        public bool CheckBingoDiagonalDirection()
+        {
+            return CheckBingoWithIndexDistance(this.BoardSize - 1, 4) || CheckBingoWithIndexDistance(0, 6);
+        }
     }
 }
